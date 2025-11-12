@@ -1,0 +1,44 @@
+:root {
+  --background: 0 0% 100%;
+  --foreground: 210 10% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 10% 15%;
+  --primary: 180 95% 48%;
+  --primary-foreground: 0 0% 100%;
+  --muted-foreground: 210 10% 45%;
+}
+
+.dark {
+  --background: 210 20% 8%;
+  --foreground: 210 10% 92%;
+  --card: 210 18% 12%;
+  --card-foreground: 210 10% 92%;
+  --primary: 180 95% 48%;
+  --primary-foreground: 0 0% 100%;
+  --muted-foreground: 210 10% 60%;
+}
+
+/* Bottom card (biggest) - Card 1 */
+.stack-cards__item:nth-child(3) {
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 1;
+}
+
+/* Middle card - Card 2 */
+.stack-cards__item:nth-child(2) {
+  transform: translate(-50%, -50%) scale(0.95) translateY(-25px);
+  z-index: 2;
+}
+
+/* Top card (smallest) - Card 3 */
+.stack-cards__item:nth-child(1) {
+  transform: translate(-50%, -50%) scale(0.9) translateY(-50px);
+  z-index: 3;
+}
+
+/* Update the slide-up class to override the new transforms */
+.stack-cards__item.slide-up {
+  transform: translate(-50%, -260%) scale(0.9) !important; 
+  opacity: 0;
+  visibility: hidden;
+}
