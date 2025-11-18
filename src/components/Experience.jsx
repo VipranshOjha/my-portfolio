@@ -55,7 +55,7 @@ function Experience() {
           <div className="col-md-4">
             <div className="service-card">
               <div className="body">
-                <img src={`${import.meta.env.BASE_URL}assets/imgs/responsive.svg`} alt="Research Assistant" className="icon" />
+                <img src={`${import.meta.env.BASE_URL}imgs/responsive.svg`} alt="Research Assistant" className="icon" />
                 <h6 className="title">Research Assistant</h6>
                 <p className="subtitle"><strong>VIT Bhopal University | Nov '23 - Jan '24</strong><br />Developed digital signal processing algorithms in Python to analyze COVID-19 genomic sequences under faculty supervision.</p>
                 
