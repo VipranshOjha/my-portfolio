@@ -13,7 +13,7 @@ function Experience() {
           <div className="col-md-4">
             <div className="service-card">
               <div className="body">
-                <img src={`${import.meta.env.BASE_URL}assets/imgs/analytics.svg`} alt="Software Development Intern" className="icon" />
+                <img src="/assets/imgs/analytics.svg" alt="Software Development Intern" className="icon" />
                 <h6 className="title">Software Development Intern | Govt. of India</h6>
                 <p className="subtitle"><strong>BISAG-N (Govt. of India) | May 2025 - Jun 2025</strong><br />Developed and deployed 'Discover Places', a full-stack location recommendation system using Flask and PostgreSQL.</p>
                 
@@ -34,7 +34,7 @@ function Experience() {
           <div className="col-md-4">
             <div className="service-card">
               <div className="body">
-                <img src={`${import.meta.env.BASE_URL}assets/imgs/toolbox.svg`} alt="Research Intern" className="icon" />
+                <img src="/assets/imgs/toolbox.svg" alt="Research Intern" className="icon" />
                 <h6 className="title">Research Intern | SERB Sponsored Project</h6>
                 <p className="subtitle"><strong>VIT Bhopal University | May 2024 - Jun 2024</strong><br />Built 'MolSpectra', a molecular visualization tool from scratch, integrating 5+ quantum chemistry packages like Gaussian and GAMESS.</p>
                 
@@ -55,7 +55,7 @@ function Experience() {
           <div className="col-md-4">
             <div className="service-card">
               <div className="body">
-                <img src={`${import.meta.env.BASE_URL}assets/imgs/responsive.svg`} alt="Research Assistant" className="icon" />
+                <img src="/assets/imgs/responsive.svg" alt="Research Assistant" className="icon" />
                 <h6 className="title">Research Assistant</h6>
                 <p className="subtitle"><strong>VIT Bhopal University | Nov '23 - Jan '24</strong><br />Developed digital signal processing algorithms in Python to analyze COVID-19 genomic sequences under faculty supervision.</p>
                 

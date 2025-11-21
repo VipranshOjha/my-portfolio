@@ -7,7 +7,7 @@ function About() {
         {/* about wrapper */}
         <div className="about">
           <div className="about-img-holder">
-            <img src={`${import.meta.env.BASE_URL}assets/imgs/Me.jpg`} className="about-img" alt="Vipransh Ojha" />
+            <img src="/assets/imgs/Me.jpg" className="about-img" alt="Vipransh Ojha" />
           </div>
           <div className="about-caption">
             <p className="section-subtitle">Who Am I ?</p>

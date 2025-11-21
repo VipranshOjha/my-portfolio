@@ -18,7 +18,7 @@ const projects = [
     description:
       "Developed a robust online judge platform featuring real-time code execution and evaluation against custom test cases. Supports multiple programming languages, offers secure user authentication, and includes a comprehensive problem statement and submission management system, simulating a competitive programming environment.",
     githubUrl: "https://github.com/VipranshOjha/Dikastirio",
-  image: `${import.meta.env.BASE_URL}assets/imgs/dikastirio.jpg`,
+    image: "/assets/imgs/dikastirio.jpg",
   },
   {
     title: "Automated Dental Forensic Identification",
@@ -27,7 +27,7 @@ const projects = [
     description:
       "Designed and implemented an AI-powered system for automated dental identification, crucial in forensic science. Utilizes Convolutional Neural Networks (CNNs) trained on the DENTEX dataset to analyze dental X-rays, providing high-accuracy matches for identity verification and enhancing forensic investigations.",
     githubUrl: "https://github.com/VipranshOjha/Automated-Dental-Forensic-Identification",
-  image: `${import.meta.env.BASE_URL}assets/imgs/automated_dental_forensic_identification.jpg`,
+    image: "/assets/imgs/automated_dental_forensic_identification.jpg",
   },
   {
     title: "SpeechSync - Real-Time Communication",
@@ -36,7 +36,7 @@ const projects = [
     description:
       "Developed a real-time, multi-language speech-to-text and translation communication system. Integrates advanced noise filtering and natural language processing to provide seamless, instant transcription and translation, enhancing accessibility and cross-linguistic interaction for various applications.",
     githubUrl: "https://github.com/DSinghania13/SpeechSync",
-  image: `${import.meta.env.BASE_URL}assets/imgs/speechsync.jpg`,
+    image: "/assets/imgs/speechsync.jpg",
     liveUrl: "https://speech-sync.vercel.app/",
   },
   {
@@ -46,7 +46,7 @@ const projects = [
     description:
       "Built and deployed a robust Flask-based Machine Learning API for predicting loan default risk. The API leverages a pre-trained scikit-learn model to provide real-time probability scores, integrated with Docker for scalable deployment, and publicly accessible on Hugging Face Spaces for demonstration.",
     githubUrl: "https://github.com/VipranshOjha/FinRisk",
-  image: `${import.meta.env.BASE_URL}assets/imgs/finrisk.jpg`,
+    image: "/assets/imgs/finrisk.jpg",
     liveUrl: "https://finrisk-ai.vercel.app/",
   },
   {
@@ -56,7 +56,7 @@ const projects = [
     description:
       "A collection of AI agents developed to play various classic games, demonstrating different reinforcement learning and evolutionary algorithms. Includes implementations for Flappy Bird (NEAT), Dino Runner (Q-Learning), and Snake (Deep Q-Networks), showcasing AI's ability to learn complex strategies autonomously.",
     githubUrl: "https://github.com/VipranshOjha/AI-Plays-Games",
-  image: `${import.meta.env.BASE_URL}assets/imgs/ai_plays_games.jpg`,
+    image: "/assets/imgs/ai_plays_games.jpg",
   },
   {
     title: "Computer Vision Project Collection",
@@ -65,7 +65,7 @@ const projects = [
     description:
       "A comprehensive repository of diverse computer vision applications, ranging from real-time object detection and facial recognition to advanced image manipulation and gesture control. Showcases practical implementations of modern CV techniques and deep learning models for various interactive and analytical purposes.",
     githubUrl: "https://github.com/VipranshOjha/Computer-Vision-Projects",
-  image: `${import.meta.env.BASE_URL}assets/imgs/computer_vision_projects.jpg`,
+    image: "/assets/imgs/computer_vision_projects.jpg",
   },
 ];
 
