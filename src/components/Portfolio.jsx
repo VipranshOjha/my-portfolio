@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
-import { ExternalLink, PlayCircle } from "lucide-react";
+import { Github, PlayCircle } from "lucide-react"; // UPDATED: Imported Github
 
 // Import Swiper styles
 import "swiper/css";
@@ -150,7 +150,8 @@ const Portfolio = () => {
                         className="project-link-btn"
                         aria-label="View on GitHub"
                       >
-                        <ExternalLink size={16} /> GitHub
+                        {/* UPDATED: Swapped ExternalLink with Github icon */}
+                        <Github size={16} /> GitHub
                       </a>
                       
                       {/* --- CONDITIONAL LIVE DEMO LINK --- */}
