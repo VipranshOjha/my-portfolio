@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper";
-import { Github, PlayCircle } from "lucide-react"; // UPDATED: Imported Github
+import { Github, PlayCircle } from "lucide-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -79,23 +79,41 @@ const Portfolio = () => {
           </p>
           <h2 className="section-title mb-6">Projects</h2>
         </div>
-        <div className="relative px-4">
+        
+        <div className="relative px-4 portfolio-wrapper">
           <Swiper
             effect="coverflow"
             grabCursor={true}
             centeredSlides={true}
-            slidesPerView="auto"
             loop={true}
             autoplay={{
               delay: 3500,
               disableOnInteraction: false,
             }}
+            // Defaults (Mobile)
+            slidesPerView={1}
+            spaceBetween={20}
             coverflowEffect={{
-              rotate: 50,
+              rotate: 0,
               stretch: 0,
-              depth: 100,
+              depth: 0,
               modifier: 1,
-              slideShadows: true,
+              slideShadows: false,
+            }}
+            // Breakpoints
+            breakpoints={{
+              // Desktop Override
+              768: {
+                slidesPerView: "auto", // Allows proper centering of 350px cards
+                spaceBetween: 0,
+                coverflowEffect: {
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }
+              }
             }}
             pagination={{
               clickable: true,
@@ -104,19 +122,11 @@ const Portfolio = () => {
             navigation={true}
             modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
             className="projects-swiper"
-            style={{
-              paddingTop: "40px",
-              paddingBottom: "40px",
-            }}
           >
             {projects.map((project, index) => (
               <SwiperSlide
                 key={index}
-                style={{
-                  width: "400px",
-                  maxWidth: "90vw",
-                  height: "650px",
-                }}
+                className="project-slide-item"
               >
                 <div className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col" style={{ backgroundColor: 'hsl(var(--card))', color: 'hsl(var(--card-foreground))' }}>
                   <div className="relative h-3/4 overflow-hidden">
@@ -141,7 +151,6 @@ const Portfolio = () => {
                       {project.description}
                     </p>
                     
-                    {/* --- LINKS DIV --- */}
                     <div className="project-links mt-auto pt-4">
                       <a
                         href={project.githubUrl}
@@ -150,11 +159,9 @@ const Portfolio = () => {
                         className="project-link-btn"
                         aria-label="View on GitHub"
                       >
-                        {/* UPDATED: Swapped ExternalLink with Github icon */}
                         <Github size={16} /> GitHub
                       </a>
                       
-                      {/* --- CONDITIONAL LIVE DEMO LINK --- */}
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
@@ -166,9 +173,7 @@ const Portfolio = () => {
                           <PlayCircle size={16} /> Live Demo
                         </a>
                       )}
-                      {/* --- END OF CONDITIONAL LINK --- */}
                     </div>
-                    {/* --- END OF LINKS DIV --- */}
 
                   </div>
                 </div>
@@ -178,6 +183,91 @@ const Portfolio = () => {
         </div>
       </div>
       <style>{`
+        /* --- GLOBAL STYLES --- */
+        #portfolio {
+          overflow: hidden; /* Prevent full-page horizontal scroll */
+        }
+
+        .projects-swiper {
+          padding-top: 40px !important;
+          padding-bottom: 40px !important;
+          /* Allow overflowing cards to be seen within the section on mobile, clipped on desktop */
+          overflow: visible !important; 
+        }
+        
+        /* Slide Sizing */
+        .project-slide-item {
+          width: 350px;
+          max-width: 85vw; /* Responsive width for mobile */
+          height: 650px;
+        }
+
+        /* --- SWIPER ARROWS (Common) --- */
+        .projects-swiper .swiper-button-next,
+        .projects-swiper .swiper-button-prev {
+          color: hsl(var(--primary));
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          z-index: 50;
+        }
+        .projects-swiper .swiper-button-next::after,
+        .projects-swiper .swiper-button-prev::after {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        /* --- DESKTOP VIEW (> 768px) --- */
+        @media (min-width: 769px) {
+          .projects-swiper {
+             overflow: hidden !important; /* Hide extra cards on desktop */
+          }
+          
+          /* Desktop Arrows: Frosted Glass */
+          .projects-swiper .swiper-button-next,
+          .projects-swiper .swiper-button-prev {
+             background: hsl(var(--background) / 0.9);
+             backdrop-filter: blur(10px);
+          }
+          
+          .projects-swiper .swiper-button-next:hover,
+          .projects-swiper .swiper-button-prev:hover {
+            background: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+            transform: scale(1.1);
+          }
+
+          /* LOGIC: Show Only Middle 3 Cards */
+          .projects-swiper .swiper-slide {
+             opacity: 0 !important;
+             visibility: hidden !important;
+             transition: opacity 0.3s ease, visibility 0.3s ease;
+             pointer-events: none;
+          }
+          
+          /* Visible: Active (Center) + Prev (Left) + Next (Right) */
+          .projects-swiper .swiper-slide-active,
+          .projects-swiper .swiper-slide-prev,
+          .projects-swiper .swiper-slide-next {
+             opacity: 1 !important;
+             visibility: visible !important;
+             pointer-events: auto;
+          }
+        }
+
+        /* --- MOBILE VIEW (<= 768px) --- */
+        @media (max-width: 768px) {
+           /* Mobile Arrows: Transparent */
+           .projects-swiper .swiper-button-next,
+           .projects-swiper .swiper-button-prev {
+             background: transparent !important;
+             backdrop-filter: none !important;
+             box-shadow: none !important;
+           }
+        }
+
+        /* --- Standard Card Styling (Colors, Shadows) --- */
         .relative { position: relative; }
         .absolute { position: absolute; }
         .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
@@ -235,7 +325,7 @@ const Portfolio = () => {
           align-items: center;
           gap: 6px;
           padding: 6px 12px;
-          border-radius: 9999px; /* pill shape */
+          border-radius: 9999px; 
           font-size: 0.8rem;
           font-weight: 500;
           text-decoration: none;
@@ -249,27 +339,6 @@ const Portfolio = () => {
           transform: translateY(-2px);
         }
         
-        /* Swiper custom styles */
-        .projects-swiper .swiper-button-next,
-        .projects-swiper .swiper-button-prev {
-          color: hsl(var(--primary));
-          width: 40px;
-          height: 40px;
-          background: hsl(var(--background) / 0.9);
-          border-radius: 50%;
-          backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
-        }
-        .projects-swiper .swiper-button-next:hover,
-        .projects-swiper .swiper-button-prev:hover {
-          background: hsl(var(--primary));
-          color: hsl(var(--primary-foreground));
-          transform: scale(1.1);
-        }
-        .projects-swiper .swiper-button-next::after,
-        .projects-swiper .swiper-button-prev::after {
-          font-size: 20px;
-        }
         .projects-swiper .swiper-pagination-bullet {
           background: hsl(var(--primary));
           opacity: 0.5;
@@ -289,21 +358,12 @@ const Portfolio = () => {
         }
         .projects-swiper .swiper-slide:hover .group {
           z-index: 10;
-          }
-        .flex-col { 
-          flex-direction: column;
         }
-        .flex-grow { flex-grow: 1; 
-        }
-        .mt-auto { 
-          margin-top: auto; 
-        }
-        .pt-4 { 
-          padding-top: 1rem; 
-        }
-        .h-1\/2 { 
-          height: 75%; 
-        }  
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
+        .mt-auto { margin-top: auto; }
+        .pt-4 { padding-top: 1rem; }
+        .h-1\/2 { height: 75%; }  
       `}</style>
     </section>
   );

@@ -45,16 +45,20 @@ function Navbar({ toggleTheme, theme }) {
             <Link className="link" to="contact" smooth={true} duration={700} offset={-60} onClick={() => setIsNavOpen(false)}>Contact</Link>
           </li>
         </ul>
-        <a 
-          href="javascript:void(0)" 
+        
+        {/* CHANGED: Swapped <a> for <button> to fix the warning */}
+        <button 
           id="nav-toggle" 
           className={`hamburger hamburger--elastic ${isNavOpen ? 'is-active' : ''}`}
           onClick={handleNavToggle}
+          type="button"
+          aria-label="Menu"
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }} // Reset button styles
         >
           <div className="hamburger-box">
             <div className="hamburger-inner"></div>
           </div>
-        </a>
+        </button>
 
         <button 
           id="dark-mode-toggle" 
