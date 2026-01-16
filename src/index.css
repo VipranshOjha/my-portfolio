@@ -54,3 +54,34 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+.section {
+  /* 1. Remove any outer pushing (Margins) */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+
+  /* 2. Reduce the inner spacing (Padding) */
+  /* This controls how close the content gets to the edge of the section */
+  padding-top: 20px;   
+  padding-bottom: 20px; 
+}
+
+/* Optional: Even tighter on mobile */
+@media screen and (max-width: 768px) {
+  .section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+/* Increase gap between Section Heading and Content */
+.section-header {
+  margin-bottom: 80px !important;  /* Was likely 40px (mb-10) before */
+}
+
+/* Optional: Adjust for mobile if 80px is too big for small screens */
+@media screen and (max-width: 768px) {
+  .section-header {
+    margin-bottom: 50px !important;
+  }
+}

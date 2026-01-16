@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Github } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-// Swiper Imports
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCards } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/effect-cards';
+import { FileText, Github, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const experiences = [
   {
     title: "Software Development Intern",
     company: "BISAG-N (Govt. of India)",
     period: "May 2025 - Jun 2025",
-    description: "Developed and deployed 'Discover Places', a full-stack location recommendation system. The system utilizes Flask for the backend logic and PostgreSQL for robust data management, providing users with personalized travel suggestions based on their preferences.",
+    description: "Developed and deployed 'Discover Places', a full-stack location recommendation system utilizing Flask and PostgreSQL to provide personalized travel suggestions.",
     techStack: ["Flask", "PostgreSQL", "Python", "Full-Stack"],
     links: [
-      { label: "GitHub", url: "https://github.com/VipranshOjha/Discover-Places", icon: <Github size={20} /> },
-      { label: "Certificate", url: "/Internship_certificate_BISAG-N.pdf", icon: <FileText size={20} /> }
+      { label: "GitHub", url: "https://github.com/VipranshOjha/Discover-Places", icon: <Github size={18} /> },
+      { label: "Certificate", url: "/Internship_certificate_BISAG-N.pdf", icon: <FileText size={18} /> }
     ],
     image: "/assets/imgs/Search Places.jpg"
   },
@@ -25,11 +19,11 @@ const experiences = [
     title: "Research Intern | SERB Project",
     company: "VIT Bhopal University",
     period: "May 2024 - Jun 2024",
-    description: "Built 'MolSpectra', a comprehensive molecular visualization tool from scratch. This research-focused tool integrates over 5 quantum chemistry packages (including Gaussian and GAMESS), allowing researchers to visualize complex molecular structures and data seamlessly.",
-    techStack: ["React", "Quantum Chemistry", "Visualization", "Gaussian"],
+    description: "Built 'MolSpectra', a molecular visualization tool integrating 5+ quantum chemistry packages (Gaussian, GAMESS) to visualize complex molecular structures.",
+    techStack: ["React", "Quantum Chemistry", "Visualization"],
     links: [
-      { label: "GitHub", url: "https://github.com/VipranshOjha/ChemStruct-Suite", icon: <Github size={20} /> },
-      { label: "Certificate", url: "/Internship_certificate_SERB.pdf", icon: <FileText size={20} /> }
+      { label: "GitHub", url: "https://github.com/VipranshOjha/ChemStruct-Suite", icon: <Github size={18} /> },
+      { label: "Certificate", url: "/Internship_certificate_SERB.pdf", icon: <FileText size={18} /> }
     ],
     image: "/assets/imgs/ChemStruct Suite.jpg"
   },
@@ -37,28 +31,14 @@ const experiences = [
     title: "Research Assistant",
     company: "VIT Bhopal University",
     period: "Nov '23 - Jan '24",
-    description: "Engaged in bioinformatics research by developing advanced digital signal processing (DSP) algorithms in Python. These algorithms were specifically designed to analyze COVID-19 genomic sequences, contributing to the understanding of viral mutations.",
+    description: "Developed advanced DSP algorithms in Python to analyze COVID-19 genomic sequences, contributing to the understanding of viral mutations.",
     techStack: ["Python", "DSP", "Bioinformatics", "Genomics"],
     links: [
-      { label: "GitHub", url: "https://github.com/VipranshOjha/covid19-genomic-dsp", icon: <Github size={20} /> }
+      { label: "GitHub", url: "https://github.com/VipranshOjha/covid19-genomic-dsp", icon: <Github size={18} /> }
     ],
     image: "/assets/imgs/covid19-genomic-dsp.jpg"
   }
 ];
-
-// Helper for Zoomable Image on Mobile
-const MobileImageCard = ({ src, alt }) => {
-  const [isZoomed, setIsZoomed] = useState(false);
-  return (
-    <div 
-      className={`mobile-card-image ${isZoomed ? 'zoomed' : ''}`}
-      onClick={() => setIsZoomed(!isZoomed)}
-    >
-      <img src={src} alt={alt} />
-      <div className="overlay"></div>
-    </div>
-  );
-};
 
 // --- DESKTOP ANIMATION VARIANTS ---
 const contentVariants = {
@@ -78,6 +58,7 @@ const imageVariants = {
 
 function Experience() {
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null); // Track which accordion is open
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 992);
@@ -86,10 +67,14 @@ function Experience() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
     <section className="section" id="experience" style={{ backgroundColor: 'hsl(var(--background))' }}>
       <div className="container">
-        <div className="section-header text-center mb-5">
+        <div className="section-header text-center" style={{ marginBottom: '6rem' }}>
           <p className="section-subtitle" style={{ color: 'hsl(var(--primary))', fontWeight: 600, letterSpacing: '2px' }}>MY FORMAL WORK</p>
           <h2 className="section-title">Experience</h2>
         </div>
@@ -105,7 +90,7 @@ function Experience() {
                     className="experience-content"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.4, margin: "1000px 0px 0px 0px" }} 
+                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }} 
                     variants={contentVariants}
                     custom={isRightAligned}
                   >
@@ -134,7 +119,7 @@ function Experience() {
                     className="experience-image"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.4, margin: "1000px 0px 0px 0px" }} 
+                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }} 
                     variants={imageVariants}
                   >
                     <div className="img-wrapper">
@@ -148,236 +133,220 @@ function Experience() {
           </ul>
         )}
 
-        {/* ================= MOBILE VIEW (Yellow Box + Deck) ================= */}
+        {/* ================= MOBILE VIEW (Accordion) ================= */}
         {isMobile && (
-          <div className="mobile-experience-container">
-            {experiences.map((exp, index) => (
-              <div key={index} className="mobile-experience-block">
-                
-                {/* 1. HEADER (Purple Box) */}
-                <div className="mobile-header">
-                  <h3 className="mobile-title">{exp.title}</h3>
-                  <div className="mobile-company">
-                    {exp.company}
-                    <span className="mobile-period-block">{exp.period}</span>
-                  </div>
-                </div>
-
-                {/* 2. DECK CAROUSEL (2 Slides: Image & Info) */}
-                <div className="mobile-deck-wrapper">
-                  <Swiper
-                    effect={'cards'}
-                    grabCursor={true}
-                    loop={true}
-                    modules={[EffectCards]}
-                    className="deck-swiper"
+          <div className="mobile-accordion-wrapper">
+            {experiences.map((exp, index) => {
+              const isOpen = activeIndex === index;
+              return (
+                <div key={index} className={`accordion-card ${isOpen ? 'open' : ''}`}>
+                  {/* Header (Always Visible) */}
+                  <button 
+                    className="accordion-header" 
+                    onClick={() => toggleAccordion(index)}
+                    aria-expanded={isOpen}
                   >
-                    {/* SLIDE 1: IMAGE */}
-                    <SwiperSlide className="deck-card image-card-slide">
-                      <MobileImageCard src={exp.image} alt={exp.title} />
-                    </SwiperSlide>
-
-                    {/* SLIDE 2: DESCRIPTION */}
-                    <SwiperSlide className="deck-card info-card">
-                      <div className="info-content">
-                        <p className="mobile-desc">{exp.description}</p>
-                        
-                        <ul className="mobile-tech-list">
-                          {exp.techStack.map((tech, i) => (
-                            <li key={i}>{tech}</li>
-                          ))}
-                        </ul>
-
-                        <div className="mobile-links">
-                          {exp.links.map((link, i) => (
-                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer">
-                              {link.icon} {link.label}
-                            </a>
-                          ))}
-                        </div>
+                    <div className="header-info">
+                      <h3 className="acc-title">{exp.title}</h3>
+                      <div className="acc-meta">
+                         <span className="acc-company">{exp.company}</span>
+                         <span className="acc-period">{exp.period}</span>
                       </div>
-                    </SwiperSlide>
-                  </Swiper>
-                </div>
+                    </div>
+                    <div className="acc-icon">
+                      {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                    </div>
+                  </button>
 
-              </div>
-            ))}
+                  {/* Body (Collapsible) */}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="accordion-body"
+                      >
+                        <div className="body-content">
+                           {/* Image inside accordion */}
+                           <div className="acc-image-wrapper">
+                             <img src={exp.image} alt={exp.title} />
+                           </div>
+
+                           <p className="acc-description">{exp.description}</p>
+                           
+                           <div className="acc-tech-list">
+                              {exp.techStack.map((tech, i) => (
+                                <span key={i} className="tech-badge">{tech}</span>
+                              ))}
+                           </div>
+
+                           <div className="acc-links">
+                              {exp.links.map((link, i) => (
+                                <a key={i} href={link.url} className="link-btn" target="_blank" rel="noopener noreferrer">
+                                  {link.icon} <span>{link.label}</span>
+                                </a>
+                              ))}
+                           </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         )}
-
       </div>
 
       <style>{`
-        /* ================= MOBILE STYLES ================= */
-        .mobile-experience-container {
+        /* ================= MOBILE ACCORDION STYLES ================= */
+        .mobile-accordion-wrapper {
           display: flex;
           flex-direction: column;
-          gap: 60px;
-          padding-bottom: 40px;
+          gap: 15px;
+          padding-bottom: 20px;
         }
 
-        /* Header Box */
-        .mobile-header {
-          margin-bottom: 20px;
+        .accordion-card {
+          background: #ffffff;
+          border-radius: 12px;
+          border: 1px solid rgba(0,0,0,0.08);
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        .dark .accordion-card {
+          background: #1e293b;
+          border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Active State Highlight */
+        .accordion-card.open {
+          border-color: #695aa6;
+          box-shadow: 0 4px 20px rgba(105, 90, 166, 0.15);
+        }
+
+        /* Header */
+        .accordion-header {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 20px;
+          background: transparent;
+          border: none;
           text-align: left;
-          padding: 15px 20px;
-          background: #ffffff; /* Explicit White for Light Mode */
-          border-left: 6px solid #695aa6; /* Purple Accent */
-          border-radius: 0 1rem 1rem 0;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        
-        .dark .mobile-header {
-           background: #171f29;
-           box-shadow: 0 4px 15px rgba(255,255,255,0.05);
+          cursor: pointer;
         }
 
-        .mobile-title {
-          font-size: 1.25rem;
+        .header-info {
+          flex: 1;
+          padding-right: 15px;
+        }
+
+        .acc-title {
+          font-size: 1rem;
           font-weight: 700;
           color: #695aa6;
-          margin-bottom: 6px;
-          line-height: 1.25;
+          margin-bottom: 4px;
+          line-height: 1.3;
         }
 
-        .mobile-company {
-          font-size: 0.95rem;
-          color: hsl(var(--foreground));
+        .acc-meta {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .acc-company {
+          font-size: 0.85rem;
           font-weight: 600;
+          color: hsl(var(--foreground));
         }
 
-        .mobile-period-block {
-          display: block;
-          font-size: 0.8rem;
+        .acc-period {
+          font-size: 0.75rem;
           color: hsl(var(--muted-foreground));
-          margin-top: 4px;
-          font-weight: 400;
+          margin-top: 2px;
         }
 
-        /* Deck Carousel Wrapper */
-        .mobile-deck-wrapper {
-          width: 300px; 
-          height: 400px;
-          margin: 0 auto;
-          overflow: visible;
+        .acc-icon {
+          color: hsl(var(--muted-foreground));
+          display: flex;
+          align-items: center;
+        }
+        .accordion-card.open .acc-icon {
+          color: #695aa6;
         }
 
-        .deck-swiper {
-          width: 100%;
-          height: 100%;
-          max-width: 100%;
-          box-sizing: border-box;
-          overflow: visible;
-          touch-action: pan-y;   
-        }
-
-        .deck-card {
-          border-radius: 1.5rem;
+        /* Body Content */
+        .accordion-body {
           overflow: hidden;
-          background-color: #ffffff;
-          box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        .dark .deck-card {
-          background-color: #171f29;
-          box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255,255,255,0.1);
+        .body-content {
+          padding: 0 20px 20px 20px;
+          border-top: 1px solid rgba(0,0,0,0.05);
         }
+        .dark .body-content { border-top-color: rgba(255,255,255,0.05); }
 
-        /* Slide 1: Zoomable Image */
-        .image-card-slide {
-          background-color: #000;
-        }
-
-        .mobile-card-image {
+        .acc-image-wrapper {
           width: 100%;
-          height: 100%;
-          position: relative;
-          cursor: zoom-in;
+          height: 160px;
+          border-radius: 8px;
+          overflow: hidden;
+          margin-top: 20px;
+          margin-bottom: 15px;
         }
 
-        .mobile-card-image img {
+        .acc-image-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease-out; 
         }
 
-        .mobile-card-image.zoomed img {
-          transform: scale(1.1); 
-          cursor: zoom-out;
-        }
-
-        .mobile-card-image .overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-          pointer-events: none;
-        }
-
-        /* Slide 2: Info */
-        .info-content {
-          padding: 30px 25px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          overflow-y: auto;
-        }
-
-        .mobile-desc {
-          font-size: 0.95rem;
+        .acc-description {
+          font-size: 0.9rem;
           line-height: 1.6;
           color: hsl(var(--muted-foreground));
-          margin-bottom: 20px;
+          margin-bottom: 15px;
         }
 
-        .mobile-tech-list {
+        .acc-tech-list {
           display: flex;
           flex-wrap: wrap;
           gap: 8px;
-          padding: 0;
-          list-style: none;
-          margin-top: auto; 
-          margin-bottom: 25px;
+          margin-bottom: 20px;
         }
 
-        .mobile-tech-list li {
+        .tech-badge {
           font-size: 0.75rem;
-          padding: 5px 10px;
+          padding: 4px 10px;
           background: rgba(105, 90, 166, 0.1);
           color: #695aa6;
           border-radius: 12px;
           font-weight: 600;
         }
-        
-        .dark .mobile-tech-list li {
-           background: rgba(105, 90, 166, 0.25);
-           color: #bfaee3;
+        .dark .tech-badge {
+          background: rgba(105, 90, 166, 0.2);
+          color: #c4b5fd;
         }
 
-        .mobile-links {
+        .acc-links {
           display: flex;
           gap: 15px;
-          padding-top: 15px;
-          border-top: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .dark .mobile-links {
-          border-top: 1px solid rgba(255,255,255,0.15);
         }
 
-        .mobile-links a {
+        .link-btn {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           font-weight: 600;
           color: hsl(var(--foreground));
+          text-decoration: none;
         }
-        
-        .mobile-links a:hover {
-          color: #695aa6;
-        }
+        .link-btn:active { color: #695aa6; }
 
         /* ================= DESKTOP STYLES (UNCHANGED) ================= */
         .experience-list { list-style: none; padding: 0; margin: 0; max-width: 1000px; margin: 0 auto; }
@@ -404,6 +373,33 @@ function Experience() {
         .experience-item:nth-of-type(2n) .experience-links { justify-content: flex-end; margin-left: 0; margin-right: -10px; }
         .experience-links a { padding: 10px; color: hsl(var(--foreground)); transition: all 0.2s ease; }
         .experience-links a:hover { color: hsl(var(--primary)); transform: translateY(-3px); }
+
+        /* --- FORCE DARK MODE TEXT COLORS --- */
+        .dark .acc-company,
+        .dark .acc-title { 
+          color: #f1f5f9; /* Almost white */
+        }
+        
+        .dark .acc-period {
+          color: #cbd5e1; /* Light grey */
+        }
+
+        .dark .acc-description {
+          color: #e2e8f0; /* Readable light text */
+        }
+
+        .dark .link-btn {
+          color: #f8fafc; /* White links */
+        }
+        
+        .dark .acc-icon {
+          color: #94a3b8; /* Lighter icon color */
+        }
+
+        /* Keep the title purple if you prefer, or make it white too */
+        .dark .acc-title {
+          color: #695aa6; /* Keep the purple accent for the main title */
+        }
       `}</style>
     </section>
   );

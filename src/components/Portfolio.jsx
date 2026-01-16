@@ -73,7 +73,7 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="section" style={{ backgroundColor: 'hsl(var(--background))' }}>
       <div className="container">
-        <div className="text-center mb-16">
+        <div className="text-center" style={{ marginBottom: '6rem' }}>
           <p className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: 'hsl(var(--primary))' }}>
             What I Did?
           </p>
@@ -189,8 +189,8 @@ const Portfolio = () => {
         }
 
         .projects-swiper {
-          padding-top: 40px !important;
-          padding-bottom: 40px !important;
+          padding-top: 0px !important;
+          padding-bottom: 20px !important;
           /* Allow overflowing cards to be seen within the section on mobile, clipped on desktop */
           overflow: visible !important; 
         }
