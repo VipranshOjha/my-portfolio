@@ -12,58 +12,58 @@ import "swiper/css/navigation";
 // Project data
 const projects = [
   {
-    title: "Dikastirio - Code Judge",
-    category: "Full-Stack (MERN)",
-    techStack: "MongoDB, Express.js, React, Node.js, REST APIs, Docker, Judge0 API",
+    title: "Dikastirio - The Agent-Driven VR Courtroom",
+    category: "VR/AR, AI Agents, LegalTech",
+    techStack: "Inya.ai, Unity, Google Gemma-3-27b, Gnani.ai",
     description:
-      "Developed a robust online judge platform featuring real-time code execution and evaluation against custom test cases. Supports multiple programming languages, offers secure user authentication, and includes a comprehensive problem statement and submission management system, simulating a competitive programming environment.",
+      "Agent-driven VR courtroom using AI and Unity to restore decorum in e-courts, featuring 'Themis' for automated procedural management and transcription.",
     githubUrl: "https://github.com/VipranshOjha/Dikastirio",
     image: "/assets/imgs/dikastirio.jpg",
   },
   {
     title: "Automated Dental Forensic Identification",
-    category: "AI & Deep Learning, Medical Imaging",
-    techStack: "Python, TensorFlow, Keras, OpenCV, DENTEX Dataset",
+    category: "AI & Deep Learning, Forensic Science",
+    techStack: "Python, PyTorch, EfficientNet-B0, Siamese Networks, DENTEX Dataset",
     description:
-      "Designed and implemented an AI-powered system for automated dental identification, crucial in forensic science. Utilizes Convolutional Neural Networks (CNNs) trained on the DENTEX dataset to analyze dental X-rays, providing high-accuracy matches for identity verification and enhancing forensic investigations.",
+      "Forensic system using Siamese Neural Networks and EfficientNet-B0 trained on the DENTEX dataset to automate dental radiograph comparison and identification.",
     githubUrl: "https://github.com/VipranshOjha/Automated-Dental-Forensic-Identification",
     image: "/assets/imgs/automated_dental_forensic_identification.jpg",
   },
   {
     title: "SpeechSync - Real-Time Communication",
     category: "AI Real-Time Systems, NLP, Speech Processing",
-    techStack: "Python, Flask, WebRTC, Google Speech-to-Text API, Translation APIs",
+    techStack: "Python, Flask, OpenAI Whisper, MarianMT, gTTS",
     description:
-      "Developed a real-time, multi-language speech-to-text and translation communication system. Integrates advanced noise filtering and natural language processing to provide seamless, instant transcription and translation, enhancing accessibility and cross-linguistic interaction for various applications.",
+      "Real-time speech-to-speech translation pipeline utilizing OpenAI Whisper for ASR, MarianMT for neural translation, and gTTS for synthesis within a Flask backend.",
     githubUrl: "https://github.com/DSinghania13/SpeechSync",
     image: "/assets/imgs/speechsync.jpg",
     liveUrl: "https://speech-sync.vercel.app/",
   },
   {
-    title: "FinRisk - Loan Default Prediction API",
-    category: "Machine Learning API, Financial Modeling",
-    techStack: "Python, Flask, scikit-learn, Pandas, Docker, Hugging Face Spaces",
+    title: "FinRisk - Credit Risk Prediction",
+    category: "Machine Learning, Financial Tech",
+    techStack: "Python, Flask, Scikit-learn, Random Forest, Power BI",
     description:
-      "Built and deployed a robust Flask-based Machine Learning API for predicting loan default risk. The API leverages a pre-trained scikit-learn model to provide real-time probability scores, integrated with Docker for scalable deployment, and publicly accessible on Hugging Face Spaces for demonstration.",
-    githubUrl: "https://github.com/VipranshOjha/FinRisk",
+      "A credit risk assessment platform using Random Forest classifiers to predict loan defaults with high accuracy, featuring real-time risk analysis and Power BI dashboards.",
+    githubUrl: "https://github.com/DSinghania13/FinRisk",
     image: "/assets/imgs/finrisk.jpg",
     liveUrl: "https://finrisk-ai.vercel.app/",
   },
   {
     title: "AI Game Playing Agents",
-    category: "AI Reinforcement Learning, Evolutionary Algorithms",
-    techStack: "Python, Pygame, NEAT, Gym, TensorFlow",
+    category: "AI & NeuroEvolution, Game Development",
+    techStack: "Python, Pygame, NEAT-Python, NumPy",
     description:
-      "A collection of AI agents developed to play various classic games, demonstrating different reinforcement learning and evolutionary algorithms. Includes implementations for Flappy Bird (NEAT), Dino Runner (Q-Learning), and Snake (Deep Q-Networks), showcasing AI's ability to learn complex strategies autonomously.",
+      "A collection of AI agents mastering classic games using NeuroEvolution ((NEAT) , Q-Learning, DQN and heuristic algorithms, visualized in real-time with Pygame.",    
     githubUrl: "https://github.com/VipranshOjha/AI-Plays-Games",
     image: "/assets/imgs/ai_plays_games.jpg",
   },
   {
     title: "Computer Vision Project Collection",
-    category: "Computer Vision, Image Processing",
-    techStack: "Python, OpenCV, MediaPipe, Dlib, TensorFlow, PyTorch",
+    category: "Computer Vision, HCI, Accessibility",
+    techStack: "Python, OpenCV, MediaPipe, Dlib, PyAutoGUI",
     description:
-      "A comprehensive repository of diverse computer vision applications, ranging from real-time object detection and facial recognition to advanced image manipulation and gesture control. Showcases practical implementations of modern CV techniques and deep learning models for various interactive and analytical purposes.",
+      "A repository of real-time HCI systems featuring real-time object detection, facial recognition, and gesture and gaze-control built with OpenCV, MediaPipe, and Dlib.",  
     githubUrl: "https://github.com/VipranshOjha/Computer-Vision-Projects",
     image: "/assets/imgs/computer_vision_projects.jpg",
   },
@@ -91,7 +91,7 @@ const Portfolio = () => {
               disableOnInteraction: false,
             }}
             // Defaults (Mobile)
-            slidesPerView={1}
+            slidesPerView={1.01}
             spaceBetween={20}
             coverflowEffect={{
               rotate: 0,
@@ -104,7 +104,7 @@ const Portfolio = () => {
             breakpoints={{
               // Desktop Override
               768: {
-                slidesPerView: "auto", // Allows proper centering of 350px cards
+                slidesPerView: "auto", 
                 spaceBetween: 0,
                 coverflowEffect: {
                   rotate: 50,
@@ -261,9 +261,7 @@ const Portfolio = () => {
            /* Mobile Arrows: Transparent */
            .projects-swiper .swiper-button-next,
            .projects-swiper .swiper-button-prev {
-             background: transparent !important;
-             backdrop-filter: none !important;
-             box-shadow: none !important;
+             display: none !important;
            }
         }
 

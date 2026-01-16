@@ -168,6 +168,7 @@ function Experience() {
                   <Swiper
                     effect={'cards'}
                     grabCursor={true}
+                    loop={true}
                     modules={[EffectCards]}
                     className="deck-swiper"
                   >
@@ -258,18 +259,22 @@ function Experience() {
           width: 300px; 
           height: 400px;
           margin: 0 auto;
+          overflow: visible;
         }
 
         .deck-swiper {
           width: 100%;
           height: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
           overflow: visible;
+          touch-action: pan-y;   
         }
 
         .deck-card {
           border-radius: 1.5rem;
           overflow: hidden;
-          background-color: #ffffff; /* Explicit White for Light Mode */
+          background-color: #ffffff;
           box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
@@ -295,11 +300,11 @@ function Experience() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease-out; /* Smooth transition matching About */
+          transition: transform 0.3s ease-out; 
         }
 
         .mobile-card-image.zoomed img {
-          transform: scale(1.1); /* 1.1x Zoom matching About */
+          transform: scale(1.1); 
           cursor: zoom-out;
         }
 

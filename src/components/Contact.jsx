@@ -78,7 +78,7 @@ function Contact() {
               <Mail size={24} className="contact-icon" />
               <div>
                 <strong>Email</strong>
-                <p><a href="mailto:vipranshojha@gmail.com">vipranshojha@gmail.com</a></p>
+                <p><a href="mailto:ojhavipransh@gmail.com">ojhavipransh@gmail.com</a></p>
               </div>
             </div>
             <div className="contact-info-item">
