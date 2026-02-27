@@ -40,21 +40,20 @@ const projects = [
     liveUrl: "https://speech-sync.vercel.app/",
   },
   {
-    title: "FinRisk - Credit Risk Prediction",
-    category: "Machine Learning, Financial Tech",
-    techStack: "Python, Flask, Scikit-learn, Random Forest, Power BI",
+    title: "RubiksCube3D - 3D Simulator & Optimal Solver",
+    category: "3D Computer Graphics, Search Algorithms",
+    techStack: "Python, Pygame, PyOpenGL, Kociemba Algorithm",
     description:
-      "A credit risk assessment platform using Random Forest classifiers to predict loan defaults with high accuracy, featuring real-time risk analysis and Power BI dashboards.",
-    githubUrl: "https://github.com/DSinghania13/FinRisk",
-    image: "/assets/imgs/finrisk.jpg",
-    liveUrl: "https://finrisk-ai.vercel.app/",
+      "A mathematically precise 3D Rubik's Cube simulator built from scratch, featuring quaternion-based rotations, Ray-AABB intersection logic, and an integrated optimal solver (≤ 20 moves).",
+    githubUrl: "https://github.com/VipranshOjha/RubiksCube3D",
+    image: "/assets/imgs/rubikscube3d.jpg",
   },
   {
     title: "AI Game Playing Agents",
     category: "AI & NeuroEvolution, Game Development",
     techStack: "Python, Pygame, NEAT-Python, NumPy",
     description:
-      "A collection of AI agents mastering classic games using NeuroEvolution ((NEAT) , Q-Learning, DQN and heuristic algorithms, visualized in real-time with Pygame.",    
+      "A collection of AI agents mastering classic games using NeuroEvolution (NEAT), Q-Learning, DQN and heuristic algorithms, visualized in real-time with Pygame.",
     githubUrl: "https://github.com/VipranshOjha/AI-Plays-Games",
     image: "/assets/imgs/ai_plays_games.jpg",
   },
@@ -63,7 +62,7 @@ const projects = [
     category: "Computer Vision, HCI, Accessibility",
     techStack: "Python, OpenCV, MediaPipe, Dlib, PyAutoGUI",
     description:
-      "A repository of real-time HCI systems featuring real-time object detection, facial recognition, and gesture and gaze-control built with OpenCV, MediaPipe, and Dlib.",  
+      "A repository of real-time HCI systems featuring real-time object detection, facial recognition, and gesture and gaze-control built with OpenCV, MediaPipe, and Dlib.",
     githubUrl: "https://github.com/VipranshOjha/Computer-Vision-Projects",
     image: "/assets/imgs/computer_vision_projects.jpg",
   },
@@ -79,7 +78,7 @@ const Portfolio = () => {
           </p>
           <h2 className="section-title mb-6">Projects</h2>
         </div>
-        
+
         <div className="relative px-4 portfolio-wrapper">
           <Swiper
             effect="coverflow"
@@ -104,8 +103,8 @@ const Portfolio = () => {
             breakpoints={{
               // Desktop Override
               768: {
-                slidesPerView: "auto", 
-                spaceBetween: 0,
+                slidesPerView: 3,
+                spaceBetween: 30,
                 coverflowEffect: {
                   rotate: 50,
                   stretch: 0,
@@ -135,7 +134,7 @@ const Portfolio = () => {
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" style={{'--tw-gradient-from': 'hsl(var(--card))', '--tw-gradient-to': 'hsl(var(--card) / 0)', '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to)'}}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" style={{ '--tw-gradient-from': 'hsl(var(--card))', '--tw-gradient-to': 'hsl(var(--card) / 0)', '--tw-gradient-stops': 'var(--tw-gradient-from), var(--tw-gradient-to)' }}></div>
                   </div>
                   <div className="p-6 flex flex-col h-3/4">
                     <h3 className="text-xl font-bold leading-tight mb-2">
@@ -150,7 +149,7 @@ const Portfolio = () => {
                     <p className="text-sm leading-relaxed line-clamp-4" style={{ color: 'hsl(var(--muted-foreground))' }}>
                       {project.description}
                     </p>
-                    
+
                     <div className="project-links mt-auto pt-4">
                       <a
                         href={project.githubUrl}
@@ -161,7 +160,7 @@ const Portfolio = () => {
                       >
                         <Github size={16} /> GitHub
                       </a>
-                      
+
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
