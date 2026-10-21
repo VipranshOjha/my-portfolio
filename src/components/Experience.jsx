@@ -5,7 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 const experiences = [
   {
     title: "Software Development Intern",
-    company: "BISAG-N (Govt. of India)",
+    company: "Government e-Marketplace (GeM), Ministry of Commerce & Industry, Government of India",
+    period: "Jun 2026 – Present",
+    description: "Developing reusable software and analytics pipelines for public procurement risk and fraud analysis, combining supplier-network and geospatial signals to identify suspicious patterns. Also building repeatable price-anomaly auditing and product-specification matching workflows that generate evidence-backed, auditable reports for recurring procurement reviews.",
+    techStack: ["Python", "Flask", "FastAPI", "NetworkX", "Statistical Analysis", "Geospatial Analytics"],
+    links: [],
+    image: "/assets/imgs/gem_procurement_analytics.jpg"
+  },
+  {
+    title: "Software Development Intern",
+    company: "BISAG-N, Ministry of Electronics & Information Technology (MeitY), Government of India",
     period: "May 2025 - Jun 2025",
     description: "Developed and deployed 'Discover Places', a full-stack location recommendation system utilizing Flask and PostgreSQL to provide personalized travel suggestions.",
     techStack: ["Flask", "PostgreSQL", "Python", "Full-Stack"],
@@ -13,7 +22,7 @@ const experiences = [
       { label: "GitHub", url: "https://github.com/VipranshOjha/Discover-Places", icon: <Github size={18} /> },
       { label: "Certificate", url: "/Internship_certificate_BISAG-N.pdf", icon: <FileText size={18} /> }
     ],
-    image: "/assets/imgs/Search Places.jpg"
+    image: "/assets/imgs/discover_laces.jpg"
   },
   {
     title: "Research Intern | SERB Project",
@@ -25,7 +34,7 @@ const experiences = [
       { label: "GitHub", url: "https://github.com/VipranshOjha/ChemStruct-Suite", icon: <Github size={18} /> },
       { label: "Certificate", url: "/Internship_certificate_SERB.pdf", icon: <FileText size={18} /> }
     ],
-    image: "/assets/imgs/ChemStruct Suite.jpg"
+    image: "/assets/imgs/chemstruct_suite.jpg"
   },
   {
     title: "Research Assistant",
@@ -86,11 +95,11 @@ function Experience() {
               const isRightAligned = index % 2 !== 0;
               return (
                 <li key={index} className="experience-item">
-                  <motion.div 
+                  <motion.div
                     className="experience-content"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }} 
+                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }}
                     variants={contentVariants}
                     custom={isRightAligned}
                   >
@@ -115,11 +124,11 @@ function Experience() {
                     </motion.div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="experience-image"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }} 
+                    viewport={{ once: false, amount: 0.4, margin: "100px 0px 0px 0px" }}
                     variants={imageVariants}
                   >
                     <div className="img-wrapper">
@@ -141,16 +150,16 @@ function Experience() {
               return (
                 <div key={index} className={`accordion-card ${isOpen ? 'open' : ''}`}>
                   {/* Header (Always Visible) */}
-                  <button 
-                    className="accordion-header" 
+                  <button
+                    className="accordion-header"
                     onClick={() => toggleAccordion(index)}
                     aria-expanded={isOpen}
                   >
                     <div className="header-info">
                       <h3 className="acc-title">{exp.title}</h3>
                       <div className="acc-meta">
-                         <span className="acc-company">{exp.company}</span>
-                         <span className="acc-period">{exp.period}</span>
+                        <span className="acc-company">{exp.company}</span>
+                        <span className="acc-period">{exp.period}</span>
                       </div>
                     </div>
                     <div className="acc-icon">
@@ -169,26 +178,26 @@ function Experience() {
                         className="accordion-body"
                       >
                         <div className="body-content">
-                           {/* Image inside accordion */}
-                           <div className="acc-image-wrapper">
-                             <img src={exp.image} alt={exp.title} />
-                           </div>
+                          {/* Image inside accordion */}
+                          <div className="acc-image-wrapper">
+                            <img src={exp.image} alt={exp.title} />
+                          </div>
 
-                           <p className="acc-description">{exp.description}</p>
-                           
-                           <div className="acc-tech-list">
-                              {exp.techStack.map((tech, i) => (
-                                <span key={i} className="tech-badge">{tech}</span>
-                              ))}
-                           </div>
+                          <p className="acc-description">{exp.description}</p>
 
-                           <div className="acc-links">
-                              {exp.links.map((link, i) => (
-                                <a key={i} href={link.url} className="link-btn" target="_blank" rel="noopener noreferrer">
-                                  {link.icon} <span>{link.label}</span>
-                                </a>
-                              ))}
-                           </div>
+                          <div className="acc-tech-list">
+                            {exp.techStack.map((tech, i) => (
+                              <span key={i} className="tech-badge">{tech}</span>
+                            ))}
+                          </div>
+
+                          <div className="acc-links">
+                            {exp.links.map((link, i) => (
+                              <a key={i} href={link.url} className="link-btn" target="_blank" rel="noopener noreferrer">
+                                {link.icon} <span>{link.label}</span>
+                              </a>
+                            ))}
+                          </div>
                         </div>
                       </motion.div>
                     )}
